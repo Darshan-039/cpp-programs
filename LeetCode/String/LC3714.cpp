@@ -44,6 +44,7 @@ public:
         return maxL;
     }
 
+
     int longestBalanced(string s) {
         int n = s.length();
         if (n == 0) return 0;
