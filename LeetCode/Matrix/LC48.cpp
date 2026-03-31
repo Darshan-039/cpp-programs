@@ -1,4 +1,4 @@
-// Rotate Image - LeetCode 48
+// Leetcode 48. Rotate Image
 
 #include <iostream>
 #include <algorithm>
