@@ -1,7 +1,7 @@
 // Optimal approach 
 
 
-
+// Approach - 1 (Using Sorting and Binary Search) - O(N log N + M log N)
 
 // vector<vector<string>> phoneDirectory(vector<string>&contactList, string &queryStr) {
 //     sort(contactList.begin(), contactList.end());
@@ -44,6 +44,8 @@
 
 
 
+
+// Approach - 2 (Using Trie)
 
 #include <iostream>
 #include <vector>
@@ -93,9 +95,7 @@ public:
     }
 
     void printSuggestions(TrieNode* curr, vector<string> &temp, string prefix) {
-        if(curr->isTerminal) {
-            temp.push_back(prefix);
-        }
+        if(curr->isTerminal) temp.push_back(prefix);
 
         for(int i = 0; i < 26; i++) {
             TrieNode* next = curr->children[i];

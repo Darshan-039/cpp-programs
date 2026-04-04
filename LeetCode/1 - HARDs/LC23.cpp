@@ -18,9 +18,11 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-// Your custom comparator
 class compare {
 public:
+    // 🔹 Custom comparator for min-heap
+    // Returns true if 'a' should come AFTER 'b'
+    // (i.e., we want smallest value at top → min heap)
     bool operator() (ListNode* a, ListNode* b) {
         return a->val > b->val;
     }
@@ -29,35 +31,51 @@ public:
 class Solution {
 public: 
     ListNode* mergeKLists(vector<ListNode*>& lists) {
+        
+        // 🔥 Min Heap (Priority Queue)
+        // Stores pointers to ListNode
+        // Ordered by node->val (smallest on top)
         priority_queue<ListNode*, vector<ListNode*>, compare> minHeap;
 
+        // 🔹 Step 1: Push first node of each list into heap
         int k = lists.size();
         for(int i = 0; i < k; i++) {
-            if(lists[i]) minHeap.push(lists[i]);
+            if(lists[i]) {
+                minHeap.push(lists[i]);
+            }
         }
 
-        ListNode* head = NULL;
-        ListNode* tail = NULL;
+        // 🔹 Step 2: Create result linked list
+        ListNode* head = NULL;  // start of merged list
+        ListNode* tail = NULL;  // last node of merged list
 
+        // 🔹 Step 3: Process heap until empty
         while(!minHeap.empty()) {
+            
+            // Get smallest node
             ListNode* top = minHeap.top();
             minHeap.pop();
 
-            if(top->next) minHeap.push(top->next);
+            // 🔸 If next node exists, push it into heap
+            // This keeps heap updated with next candidates
+            if(top->next) {
+                minHeap.push(top->next);
+            }
 
+            // 🔸 Add current node to result list
             if(!head) {
+                // First node case
                 head = top;
                 tail = top;
             }    
             else {
+                // Attach to tail and move tail forward
                 tail->next = top;
                 tail = tail->next;
             }
         }
-        
-        // Ensure the last node doesn't point to old data
-        if(tail) tail->next = NULL; 
 
+        // 🔹 Step 4: Return merged list
         return head;
     }
 };

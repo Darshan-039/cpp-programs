@@ -11,7 +11,6 @@ using namespace std;
 class Solution {
 public:
     int divide(int dividend, int divisor) {
-        // Base case: If they are the same, result is 1
         if(dividend == divisor) return 1;
         
         // Determine the sign of the result (true = +, false = -)

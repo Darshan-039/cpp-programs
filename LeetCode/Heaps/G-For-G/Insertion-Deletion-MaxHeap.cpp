@@ -27,6 +27,7 @@ class heap {
         }
     }
 
+
     void deleteFromHeap() {
         if(size == 0) {
             cout << "Nothing to delete";
