@@ -11,13 +11,8 @@ using namespace std;
 // Recursive function with memoization
 int solve(vector<int> &nums, int x, int n, vector<int> &dp) {
 
-    // If amount becomes 0, no more coins needed
     if(x == 0) return 0;
-
-    // If amount becomes negative, this path is invalid
     if(x < 0) return INT_MAX;
-
-    // If already computed, return stored result
     if(dp[x] != -1) return dp[x];
 
     int minAns = INT_MAX;
@@ -29,8 +24,7 @@ int solve(vector<int> &nums, int x, int n, vector<int> &dp) {
         int ans = solve(nums, x - nums[i], n, dp);
 
         // If valid result found, update minimum
-        if(ans != INT_MAX)
-            minAns = min(minAns, ans + 1);
+        if(ans != INT_MAX) minAns = min(minAns, ans + 1);
     }
 
     // Store result in DP array

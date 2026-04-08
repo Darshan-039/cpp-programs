@@ -30,14 +30,13 @@ public:
         vector<int> suffix(size, 1);
 
         // prefix[i] = product of all elements before index i
-        for(int i = 1; i < size; i++) {
+        for(int i = 1; i < size; i++) 
             prefix[i] = (1LL * prefix[i-1] * nums[i-1]) % MOD;
-        }
 
         // suffix[i] = product of all elements after index i
-        for(int i = size - 2; i >= 0; i--) {
+        for(int i = size - 2; i >= 0; i--) 
             suffix[i] = (1LL * suffix[i+1] * nums[i+1]) % MOD;
-        }
+
 
         // Step 3: Fill answer using prefix * suffix
         int idx = 0;
