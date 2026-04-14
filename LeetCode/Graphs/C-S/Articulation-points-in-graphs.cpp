@@ -24,8 +24,7 @@ void dfs(int node, int parent,
     for(auto nbr : adj[node]) {
 
         // ignore edge back to parent
-        if(parent == nbr) 
-            continue;
+        if(parent == nbr) continue;
 
         // Case 1: neighbour not visited ? DFS call
         if(!visited[nbr]) {

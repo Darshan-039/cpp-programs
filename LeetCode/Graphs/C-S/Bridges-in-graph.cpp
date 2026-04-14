@@ -20,8 +20,7 @@ void dfs(int node, int parent, int &timer,
 
     for(auto neighbour : adj[node]) {
 
-        if(neighbour == parent)
-            continue;
+        if(neighbour == parent) continue;
 
         if(!visited[neighbour]) {
 

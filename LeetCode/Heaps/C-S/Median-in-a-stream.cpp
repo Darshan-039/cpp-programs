@@ -23,7 +23,7 @@ void callMedian(int element, priority_queue<int> &maxi, priority_queue<int, vect
             if(element > median) {
                 mini.push(element);
                 median = mini.top();
-            }
+            }   
             else {
                 maxi.push(element);
                 median = maxi.top();
