@@ -2,61 +2,60 @@
 
 
 
-
 // Approach 1: Recursion + Memoization
 // Time Complexity: O(n*m) where n and m are the lengths of the two strings.
 
-// #include <iostream>
-// #include <string>
-// #include <vector>
-// #include <algorithm>
-// #include <cstring> // For memset
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <cstring> // For memset
 
-// using namespace std;
+using namespace std;
 
-// class Solution {
-// public:
-//     int n;
-//     int m;
-//     int t[1001][1001];
+class Solution {
+public:
+    int n;
+    int m;
+    int t[1001][1001];
 
-//     int solve(string &text1, string &text2, int i, int j) {
-//         if(i >= n || j >= m) return 0;
+    int solve(string &text1, string &text2, int i, int j) {
+        if(i >= n || j >= m) return 0;
 
-//         if(t[i][j] != -1) return t[i][j];
+        if(t[i][j] != -1) return t[i][j];
 
-//         if(text1[i] == text2[j])
-//             return t[i][j] = 1 + solve(text1, text2, i+1, j+1);
+        if(text1[i] == text2[j])
+            return t[i][j] = 1 + solve(text1, text2, i+1, j+1);
 
-//         return t[i][j] = max(solve(text1, text2, i, j+1), solve(text1, text2, i+1, j));
-//     }
+        return t[i][j] = max(solve(text1, text2, i, j+1), solve(text1, text2, i+1, j));
+    }
 
-//     int longestCommonSubsequence(string text1, string text2) {
-//         n = text1.length();
-//         m = text2.length();
-//         memset(t, -1, sizeof(t));
+    int longestCommonSubsequence(string text1, string text2) {
+        n = text1.length();
+        m = text2.length();
+        memset(t, -1, sizeof(t));
 
-//         return solve(text1, text2, 0, 0);
-//     }
-// };
+        return solve(text1, text2, 0, 0);
+    }
+};
 
-// int main() {
-//     Solution sol;
+int main() {
+    Solution sol;
 
-//     // --- Input Section ---
-//     string s1 = "abcde";
-//     string s2 = "ace";
+    // --- Input Section ---
+    string s1 = "abcde";
+    string s2 = "ace";
 
-//     // Run the solver
-//     int result = sol.longestCommonSubsequence(s1, s2);
+    // Run the solver
+    int result = sol.longestCommonSubsequence(s1, s2);
 
-//     // --- Output Section ---
-//     cout << "String 1: " << s1 << endl;
-//     cout << "String 2: " << s2 << endl;
-//     cout << "Length of Longest Common Subsequence: " << result << endl;
+    // --- Output Section ---
+    cout << "String 1: " << s1 << endl;
+    cout << "String 2: " << s2 << endl;
+    cout << "Length of Longest Common Subsequence: " << result << endl;
 
-//     return 0;
-// }
+    return 0;
+}
 
 
 

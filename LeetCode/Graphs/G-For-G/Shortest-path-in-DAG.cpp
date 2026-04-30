@@ -4,8 +4,8 @@
 #include <list>
 #include <stack>
 #include <algorithm>
-
 using namespace std;
+
 
 class Solution {
     // ... (your existing class methods: topologicalSort and shortestPath) ...
@@ -23,7 +23,9 @@ public:
     vector<int> shortestPath(int V, int E, vector<vector<int>>& edges) {
         unordered_map<int, list<pair<int, int>>> adj;
         for(int i = 0; i < E; i++) {   
-            int u = edges[i][0], v = edges[i][1], w = edges[i][2];
+            int u = edges[i][0];
+            int v = edges[i][1];
+            int w = edges[i][2];
             adj[u].push_back({v, w});
         }
        

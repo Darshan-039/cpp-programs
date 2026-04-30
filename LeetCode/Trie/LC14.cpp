@@ -58,6 +58,7 @@ public:
         if(word.length() > 0) insertUtil(root, word);
     }
 
+
     void lcp(string str, string &ans) {
         TrieNode* curr = root; // Use a temp pointer to avoid destroying the Trie
         

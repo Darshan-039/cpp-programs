@@ -3,42 +3,42 @@
 
 // Approach - 1 (Using Sorting and Binary Search) - O(N log N + M log N)
 
-// vector<vector<string>> phoneDirectory(vector<string>&contactList, string &queryStr) {
-//     sort(contactList.begin(), contactList.end());
-//     contactList.erase(unique(contactList.begin(), contactList.end()), contactList.end());
+vector<vector<string>> phoneDirectory(vector<string>&contactList, string &queryStr) {
+    sort(contactList.begin(), contactList.end());
+    contactList.erase(unique(contactList.begin(), contactList.end()), contactList.end());
 
 
-//     int n = contactList.size();
-//     vector<vector<string>> ans;
+    int n = contactList.size();
+    vector<vector<string>> ans;
 
-//     int left = 0;
-//     int right = n-1;
+    int left = 0;
+    int right = n-1;
 
-//     for(int i = 0; i<queryStr.length(); i++) {
-//         char ch = queryStr[i];
+    for(int i = 0; i<queryStr.length(); i++) {
+        char ch = queryStr[i];
 
-//         while(left <= right && (contactList[left].length() <= i || contactList[left][i] != ch)) {
-//             left++;
-//         }
+        while(left <= right && (contactList[left].length() <= i || contactList[left][i] != ch)) {
+            left++;
+        }
 
-//         while(left <= right && (contactList[right].length() <= i || contactList[right][i] != ch)) {
-//             right--;
-//         }
+        while(left <= right && (contactList[right].length() <= i || contactList[right][i] != ch)) {
+            right--;
+        }
 
-//         vector<string> temp;
-//         if (left <= right) {
-//             // 4. Collect ALL matching strings (Fix: j = left to right)
-//             for (int j = left; j <= right; j++) {
-//                 temp.push_back(contactList[j]);
-//             }
-//             ans.push_back(temp);
-//         }
-//         else break;
+        vector<string> temp;
+        if (left <= right) {
+            // 4. Collect ALL matching strings (Fix: j = left to right)
+            for (int j = left; j <= right; j++) {
+                temp.push_back(contactList[j]);
+            }
+            ans.push_back(temp);
+        }
+        else break;
 
-//     }
+    }
 
-//     return ans;
-// }
+    return ans;
+}
 
 
 
@@ -94,6 +94,8 @@ public:
         insertUtil(root, word); 
     }
 
+
+
     void printSuggestions(TrieNode* curr, vector<string> &temp, string prefix) {
         if(curr->isTerminal) temp.push_back(prefix);
 
@@ -106,6 +108,7 @@ public:
             }
         }
     }
+
 
     vector<vector<string>> getSuggestions(string str) {
         TrieNode* prev = root;

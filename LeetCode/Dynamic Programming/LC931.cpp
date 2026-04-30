@@ -3,72 +3,72 @@
 
 // Approach - 1: Recursion + Memoization (Top-Down DP)
 
-// #include <iostream>
-// #include <vector>
-// #include <algorithm>
-// #include <climits>
-// #include <cstring>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+#include <cstring>
 
-// using namespace std;
+using namespace std;
 
-// class Solution {
-// public:
-//     int n;
-//     int t[101][101];
+class Solution {
+public:
+    int n;
+    int t[101][101];
 
-//     int solve(vector<vector<int>> &matrix, int row, int col) {
-//         // Base Case
-//         if(row == n-1) return matrix[row][col];
+    int solve(vector<vector<int>> &matrix, int row, int col) {
+        // Base Case
+        if(row == n-1) return matrix[row][col];
 
-//         if(t[row][col] != -1) return t[row][col];
+        if(t[row][col] != -1) return t[row][col];
 
-//         int sum = matrix[row][col];
-//         int minAns = INT_MAX;
+        int sum = matrix[row][col];
+        int minAns = INT_MAX;
         
-//         for(int Shift = -1; Shift <= 1; Shift++) {
-//             int nextCol = col + Shift;
-//             if(row+1 < n && nextCol < n && nextCol >= 0) 
-//                 minAns = min(minAns, sum + solve(matrix, row+1, nextCol));
-//         } 
+        for(int Shift = -1; Shift <= 1; Shift++) {
+            int nextCol = col + Shift;
+            if(row+1 < n && nextCol < n && nextCol >= 0) 
+                minAns = min(minAns, sum + solve(matrix, row+1, nextCol));
+        } 
 
-//         return t[row][col] = minAns;
-//     }
+        return t[row][col] = minAns;
+    }
 
-//     int minFallingPathSum(vector<vector<int>>& matrix) {
-//         n = matrix.size();
-//         if(n == 0) return 0;
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        n = matrix.size();
+        if(n == 0) return 0;
 
-//         int minAns = INT_MAX;
-//         memset(t, -1, sizeof(t));
+        int minAns = INT_MAX;
+        memset(t, -1, sizeof(t));
 
-//         for(int col = 0; col < n; col++) {
-//             minAns = min(minAns, solve(matrix, 0, col));
-//         }
+        for(int col = 0; col < n; col++) {
+            minAns = min(minAns, solve(matrix, 0, col));
+        }
 
-//         return minAns;
-//     }
-// };
+        return minAns;
+    }
+};
 
-// int main() {
-//     Solution sol;
+int main() {
+    Solution sol;
 
-//     // Example Input: 3x3 Matrix
-//     // Path: 1 -> 4 -> 7 (Sum: 12) or 1 -> 5 -> 7 (Sum: 13) etc.
-//     // The minimum path here is 1 -> 4 -> 7 or 1 -> 5 -> 7... 
-//     // Wait, let's look at the standard LeetCode example:
-//     // [[2,1,3],[6,5,4],[7,8,9]] -> Min path is 1 -> 5 -> 7 = 13
-//     vector<vector<int>> matrix = {
-//         {2, 1, 3},
-//         {6, 5, 4},
-//         {7, 8, 9}
-//     };
+    // Example Input: 3x3 Matrix
+    // Path: 1 -> 4 -> 7 (Sum: 12) or 1 -> 5 -> 7 (Sum: 13) etc.
+    // The minimum path here is 1 -> 4 -> 7 or 1 -> 5 -> 7... 
+    // Wait, let's look at the standard LeetCode example:
+    // [[2,1,3],[6,5,4],[7,8,9]] -> Min path is 1 -> 5 -> 7 = 13
+    vector<vector<int>> matrix = {
+        {2, 1, 3},
+        {6, 5, 4},
+        {7, 8, 9}
+    };
 
-//     int result = sol.minFallingPathSum(matrix);
+    int result = sol.minFallingPathSum(matrix);
 
-//     cout << "Minimum Falling Path Sum: " << result << endl;
+    cout << "Minimum Falling Path Sum: " << result << endl;
 
-//     return 0;
-// }
+    return 0;
+}
 
 
 
