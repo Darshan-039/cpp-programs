@@ -20,8 +20,8 @@ public:
             int mid = s + (e - s) / 2; // Calculate middle index
 
             // If target is found
-            if(nums[mid] == target)
-                return mid;
+            if(nums[mid] == target) return mid;
+
 
             // Check if LEFT PART is sorted
             if(nums[s] <= nums[mid]) {

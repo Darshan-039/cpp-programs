@@ -1,4 +1,4 @@
-// 3 Sum
+// Leetcode 15. 3Sum
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -16,12 +16,8 @@ vector<vector<int>> ThreeSum(vector<int> nums) {
         int k = n-1;
         while(j<k) {
             int sum = nums[i]+nums[j]+nums[k];
-            if(sum < 0) {
-                j++;
-            }
-            else if(sum > 0) {
-                k--;
-            }
+            if(sum < 0) j++;
+            else if(sum > 0) k--;
             else {
                 ans.push_back({nums[i],nums[j],nums[k]});
                 j++;
@@ -45,11 +41,6 @@ int main() {
        cout << endl;
    }
 }
-
-
-
-
-
 
 
 

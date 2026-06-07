@@ -1,6 +1,8 @@
 // Leetcode 1320. Minimum Distance to Type a Word Using Two Fingers
 
 
+// Approach 1 - Recursion + Memoization (Top-Down DP)
+
 #include <iostream>
 #include <cstring>
 #include <string>
@@ -95,3 +97,138 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+// Approach 2 - Recursion + Memoization (Top-Down DP) with optimized state representation
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class Solution {
+public:
+
+    /*
+        dp[i][f1][f2]
+
+        i  = current index in word
+        f1 = current position of finger 1
+        f2 = current position of finger 2
+
+        Stores minimum distance needed
+        from index i onwards
+    */
+    int dp[301][27][27];
+
+    // Convert character position into keyboard coordinates
+    pair<int, int> getCoord(int pos) {
+        return {pos / 6, pos % 6};
+    }
+
+    // Calculate Manhattan Distance
+    int getDistance(int pos1, int pos2) {
+
+        auto [x1, y1] = getCoord(pos1);
+        auto [x2, y2] = getCoord(pos2);
+
+        return abs(x1 - x2) + abs(y1 - y2);
+    }
+
+    // Recursive DP function
+    int solve(string &word, int i, int f1, int f2) {
+
+        // If all characters typed
+        if(i >= word.length()) {
+            return 0;
+        }
+
+        // Current character position
+        int curr = word[i] - 'A';
+
+        // DP memoization
+        if(dp[i][f1][f2] != -1) {
+            return dp[i][f1][f2];
+        }
+
+        /*
+            Case 1:
+            Both fingers not used yet
+        */
+        if(f1 == 26 && f2 == 26) {
+
+            // Start using finger1
+            return dp[i][f1][f2] =
+                   solve(word, i + 1, curr, f2);
+        }
+
+        /*
+            Case 2:
+            Finger2 not used yet
+        */
+        if(f2 == 26) {
+
+            // Use finger2 for current character
+            int moveF2 =
+                solve(word, i + 1, f1, curr);
+
+            // Use finger1 for current character
+            int moveF1 =
+                getDistance(f1, curr)
+                + solve(word, i + 1, curr, f2);
+
+            return dp[i][f1][f2] =
+                   min(moveF1, moveF2);
+        }
+
+        /*
+            Case 3:
+            Both fingers already used
+        */
+
+        // Move finger1
+        int moveF1 =
+            getDistance(f1, curr)
+            + solve(word, i + 1, curr, f2);
+
+        // Move finger2
+        int moveF2 =
+            getDistance(f2, curr)
+            + solve(word, i + 1, f1, curr);
+
+        // Store minimum answer
+        return dp[i][f1][f2] =
+               min(moveF1, moveF2);
+    }
+
+    int minimumDistance(string word) {
+
+        // Initialize DP with -1
+        memset(dp, -1, sizeof(dp));
+
+        // 26 means finger not placed yet
+        return solve(word, 0, 26, 26);
+    }
+};
+
+int main() {
+
+    string word;
+
+    cout << "Enter word: ";
+    cin >> word;
+
+    Solution obj;
+
+    cout << "Minimum Distance = "
+         << obj.minimumDistance(word);
+
+    return 0;
+}
+

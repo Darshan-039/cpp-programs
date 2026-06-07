@@ -102,3 +102,166 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Brute Force Approach (Using Vector) - O(n) for get and put
+// TLE because of erase operation in vector which is O(n) and we are doing it for every get and put operation. Hence, overall complexity becomes O(n^2) for n operations.
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class LRUCache {
+public:
+
+    // Stores {key, value} pairs
+    vector<pair<int, int>> cache;
+
+    // Maximum capacity of cache
+    int n;
+
+    // Constructor
+    LRUCache(int capacity) {
+        n = capacity;
+    }
+
+    // Get value using key
+    int get(int key) {
+
+        // Traverse cache
+        for(int i = 0; i < cache.size(); i++) {
+
+            // If key found
+            if(cache[i].first == key) {
+
+                // Store value
+                int val = cache[i].second;
+
+                // Store current pair temporarily
+                pair<int, int> temp = cache[i];
+
+                // Remove old position
+                cache.erase(cache.begin() + i);
+
+                // Push at end because it is recently used
+                cache.push_back(temp);
+
+                return val;
+            }
+        }
+
+        // Key not found
+        return -1;
+    }
+
+    // Insert or update key-value pair
+    void put(int key, int value) {
+
+        // Check if key already exists
+        for(int i = 0; i < cache.size(); i++) {
+
+            if(cache[i].first == key) {
+
+                // Remove old entry
+                cache.erase(cache.begin() + i);
+
+                // Insert updated entry at end
+                cache.push_back({key, value});
+
+                return;
+            }
+        }
+
+        // If cache is full
+        if(cache.size() == n) {
+
+            // Remove least recently used element
+            cache.erase(cache.begin());
+
+            // Insert new element
+            cache.push_back({key, value});
+
+        } else {
+
+            // If space available
+            cache.push_back({key, value});
+        }
+    }
+
+    // Function to display cache
+    void display() {
+
+        cout << "Cache: ";
+
+        for(auto x : cache) {
+            cout << "[" << x.first << "," << x.second << "] ";
+        }
+
+        cout << endl;
+    }
+};
+
+int main() {
+
+    int capacity;
+
+    cout << "Enter cache capacity: ";
+    cin >> capacity;
+
+    LRUCache obj(capacity);
+
+    int q;
+
+    cout << "Enter number of operations: ";
+    cin >> q;
+
+    /*
+        Operations:
+        1 key value  -> put(key, value)
+        2 key        -> get(key)
+    */
+
+    while(q--) {
+
+        int type;
+        cin >> type;
+
+        // PUT operation
+        if(type == 1) {
+
+            int key, value;
+            cin >> key >> value;
+
+            obj.put(key, value);
+
+            obj.display();
+        }
+
+        // GET operation
+        else if(type == 2) {
+
+            int key;
+            cin >> key;
+
+            cout << "Value = " << obj.get(key) << endl;
+
+            obj.display();
+        }
+    }
+
+    return 0;
+}
+

@@ -20,8 +20,8 @@ public:
         }
 
         ListNode* next = NULL;
-        ListNode* curr = head;
         ListNode* prev = NULL;
+        ListNode* curr = head;
         int cnt = 0;
 
         while(curr != NULL && cnt < k) {

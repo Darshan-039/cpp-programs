@@ -47,9 +47,7 @@ void merge(int *arr, int s, int e) {
 }
 
 void mergesort(int *arr, int s,int e) {
-    if(s >= e) {
-        return ;
-    }
+    if(s >= e) return;
     
     int mid = (s+e)/2;
     

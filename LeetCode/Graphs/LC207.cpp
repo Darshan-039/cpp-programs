@@ -1,6 +1,9 @@
 // Leetcode 207. Course Schedule
 
 
+// BFS
+// Topological Sort (Kahn's Algorithm)
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -84,3 +87,14 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+// DFS
+// Cycle detection in DG
+
+// Code is same
