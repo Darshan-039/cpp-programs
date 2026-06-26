@@ -38,14 +38,14 @@ class Solution {
         for(int i=k; i<n; i++) {
             
             // Out of window removal
-            while(!maxi.empty() && i - maxi.front() >= k) {
+            while(!maxi.empty() && i - maxi.front() >= k) 
                 maxi.pop_front();
-            }
-    
-            while(!mini.empty() && i - mini.front() >= k) {
+
+
+            while(!mini.empty() && i - mini.front() >= k) 
                 mini.pop_front();
-            }
-    
+
+
             // addition of new element
             while(!maxi.empty() && arr[maxi.back()] <= arr[i])
                 maxi.pop_back();

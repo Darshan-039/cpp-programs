@@ -20,28 +20,22 @@ public:
         // 1. Pushing max value idx for first window
         for(int i = 0; i < k; i++) {
             // Maintain decreasing order in deque
-            while(!dq.empty() && nums[i] >= nums[dq.back()]) 
-            {
-                dq.pop_back();
-            }
+            while(!dq.empty() && nums[i] >= nums[dq.back()]) dq.pop_back();
             dq.push_back(i);
         }
 
         // Storing ans for the first window
         ans.push_back(nums[dq.front()]);
 
+
         // 2. Further windows are accessed
         for(int i = k; i < n; i++) {
             
             // Removal process (front): Remove idx if it's out of window
-            if(!dq.empty() && i - dq.front() >= k) {
-                dq.pop_front();
-            }
+            if(!dq.empty() && i - dq.front() >= k) dq.pop_front();
 
             // Removal Process (back): Maintain decreasing order
-            while(!dq.empty() && nums[i] >= nums[dq.back()]) {
-                dq.pop_back();
-            }
+            while(!dq.empty() && nums[i] >= nums[dq.back()]) dq.pop_back();
 
             // Adding process
             dq.push_back(i);

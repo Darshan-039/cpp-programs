@@ -1,24 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool findRedundantBrackets(string &s)
-{
+bool findRedundantBrackets(string &s) {
     stack<char> st;
 
     for (int i = 0; i < s.length(); i++) {
         char ch = s[i];
 
-        if (ch == '(' || ch == '+' || ch == '-' || ch == '*' || ch == '/') {
-            st.push(ch);
-        }
+        if (ch == '(' || ch == '+' || ch == '-' || ch == '*' || ch == '/') st.push(ch);
         else if (ch == ')') {
             bool isredundant = true;
 
             while (st.top() != '(') {
                 char top = st.top();
-                if (top == '+' || top == '-' || top == '*' || top == '/') {
-                    isredundant = false;
-                }
+                if (top == '+' || top == '-' || top == '*' || top == '/') isredundant = false;
                 st.pop();
             }
 
@@ -29,8 +24,7 @@ bool findRedundantBrackets(string &s)
     return false;
 }
 
-int main()
-{
+int main() {
     string s;
     cout << "Enter expression: ";
     cin >> s;

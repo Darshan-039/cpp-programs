@@ -23,9 +23,8 @@ public:
             
             // 3. Remove characters from front if they are repeating
             while(!q.empty()) {
-                if(count[q.front()] > 1) {
-                    q.pop();
-                } else {
+                if(count[q.front()] > 1) q.pop();
+                else {
                     // Non-repeating character found at front
                     ans.push_back(q.front());
                     break;
@@ -33,9 +32,7 @@ public:
             }
             
             // 4. If queue becomes empty, no non-repeating char exists for this stream
-            if(q.empty()) {
-                ans.push_back('#');
-            }
+            if(q.empty()) ans.push_back('#');
         }
         
         return ans;

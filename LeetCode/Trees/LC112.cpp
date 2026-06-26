@@ -16,9 +16,9 @@ public:
         if (!root) return false;
 
         // 2. Check if we are at a Leaf Node
-        if (!root->left && !root->right) {
+        if (!root->left && !root->right) 
             return targetSum == root->val;
-        }
+        
 
         // 3. Recursive Call: Subtract current value and check children
         // We use OR (||) because if either the left or right subtree 
@@ -54,12 +54,10 @@ while (!q.empty()) {
     }
 
     // 3. PUSH children with the updated sum
-    if (currNode->left) {
-        q.push({currNode->left, currSum});
-    }
-    if (currNode->right) {
-        q.push({currNode->right, currSum});
-    }
+    if (currNode->left) q.push({currNode->left, currSum});
+    
+    if (currNode->right) q.push({currNode->right, currSum});
+    
 }
 
 

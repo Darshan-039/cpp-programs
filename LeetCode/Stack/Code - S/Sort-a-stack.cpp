@@ -16,9 +16,7 @@ void sortedInsert(stack<int> &stack, int num) {
 }
 
 void sortStack(stack<int> &stack) {
-    if (stack.empty()) {
-        return;
-    }
+    if (stack.empty()) return;
 
     int n = stack.top();
     stack.pop();

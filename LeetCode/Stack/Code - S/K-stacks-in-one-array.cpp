@@ -15,9 +15,7 @@ public:
         for(int i = 0; i < N; i++) top[i] = -1;
 
         next = new int[S];
-        for(int i = 0; i < S; i++) {
-            next[i] = i + 1;
-        }
+        for(int i = 0; i < S; i++) next[i] = i + 1;
         next[S - 1] = -1;
 
         arr = new int[S];

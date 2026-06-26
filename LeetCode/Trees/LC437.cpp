@@ -46,6 +46,7 @@ public:
 
 
 
+
 // Approach - 2: Using Prefix Sum and HashMap (with initializing m[0] = 1)
 
 class Solution {
@@ -58,24 +59,14 @@ private:
 
         if (!root) return;
 
-
-
         currSum += root->val;
 
-
-
         // If (currSum - targetSum) exists, those are our valid paths
-
-        if (m.count(currSum - targetSum)) {
-
+        if (m.count(currSum - targetSum)) 
             count += m[currSum - targetSum];
-
-        }
-
 
 
         m[currSum]++; // Add current sum to map
-
 
 
         solve(root->left, targetSum, currSum, count, m);
