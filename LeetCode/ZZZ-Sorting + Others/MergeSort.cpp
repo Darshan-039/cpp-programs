@@ -10,6 +10,8 @@ void merge(int *arr, int s, int e) {
     
     int *first = new int[len1];
     int *second = new int[len2];
+
+
     
     // Copy Values
     int mainArrayIndex = s;

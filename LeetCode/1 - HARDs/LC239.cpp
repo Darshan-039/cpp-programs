@@ -21,6 +21,7 @@ public:
         for(int i = 0; i < k; i++) {
             // Maintain decreasing order in deque
             while(!dq.empty() && nums[i] >= nums[dq.back()]) dq.pop_back();
+            
             dq.push_back(i);
         }
 

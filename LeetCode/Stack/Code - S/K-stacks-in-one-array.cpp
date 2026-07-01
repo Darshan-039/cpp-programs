@@ -25,7 +25,7 @@ public:
     // Pushes 'X' into the Mth stack.
     bool push(int x, int m) {
         if(freespot == -1) return false;
-
+  
         int index = freespot;
 
         freespot = next[index];
